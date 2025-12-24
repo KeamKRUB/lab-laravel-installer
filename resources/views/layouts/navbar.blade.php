@@ -33,7 +33,7 @@
                 </g>
             </g>
             </svg>
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Landwind</span>
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Lab-Laravel</span>
         </a>
         <div class="flex items-center lg:order-2">
             <div class="hidden mt-2 mr-4 sm:inline-block">

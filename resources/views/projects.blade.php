@@ -11,7 +11,7 @@
 
     <ul class="mt-4 text-center">
         @forelse($projects as $project)
-            <li class="text-2xl">{{ $project }}</li>
+            <li class="text-2xl"><a href="{{ url('projects/' . $project) }}">{{ $project }}</a></li>
         @empty
             <li class="text-red-500 text-2xl">No project found</li>
         @endforelse
