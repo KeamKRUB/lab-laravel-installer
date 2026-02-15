@@ -1,33 +1,23 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProjectsController;
-use App\Http\Controllers\LabsController;
 
 Route::get('/', function () {
-		return view('index');
+    return view('index');
+})->name('home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/contact', function () {
-    return view('contact');
-});
-Route::get('/projects', function () {
-    return view('projects');
-});
-Route::get('/labs', function () {
-    return view('labs');
-});
 
-Route::get('/labs', [LabsController::class, 'index']);
+Route::resource('artists', ArtistController::class);
 
-Route::get('/projects/{title}', [ProjectsController::class, 'show']);
-
-Route::get('/projects', [ProjectsController::class, 'index']);
-
-Route::get('/about', [AboutController::class, 'index']);
-
-Route::get('/post/{id}', [PostController::class, 'show']);
-
-Route::get('/post', [PostController::class, 'index']);
+require __DIR__.'/auth.php';
